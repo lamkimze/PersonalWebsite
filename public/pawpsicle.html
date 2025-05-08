@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pawpsicle Drawing</title>
+  <style>
+    body {
+      background: #fef6f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    canvas {
+      border: 2px solid #ffb6b6;
+      border-radius: 10px;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="pawpsicleCanvas" width="400" height="500"></canvas>
+
+  <script>
+    const canvas = document.getElementById("pawpsicleCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Helper function for drawing circles
+    function drawCircle(x, y, radius, fillStyle) {
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = fillStyle;
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    // Draw paw base (big pad)
+    drawCircle(200, 200, 80, "#ff6b81");
+
+    // Draw toe beans
+    drawCircle(140, 120, 30, "#ff6b81");
+    drawCircle(180, 90, 30, "#ff6b81");
+    drawCircle(220, 90, 30, "#ff6b81");
+    drawCircle(260, 120, 30, "#ff6b81");
+
+    // Add popsicle stick
+    ctx.beginPath();
+    ctx.fillStyle = "#dca375";
+    ctx.fillRect(180, 280, 40, 150);
+    ctx.closePath();
+
+    // Add a bite mark (optional)
+    ctx.beginPath();
+    ctx.arc(230, 230, 25, 0, Math.PI * 2);
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.fill();
+    ctx.globalCompositeOperation = "source-over";
+
+    // Add cute shine effect
+    ctx.beginPath();
+    ctx.arc(170, 180, 20, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    ctx.fill();
+    ctx.closePath();
+  </script>
+</body>
+</html>
